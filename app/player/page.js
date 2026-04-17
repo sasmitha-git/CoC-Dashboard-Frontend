@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Cookies from 'js-cookie';
 import Navbar from '@/components/Navbar';
@@ -31,7 +31,7 @@ function getPrimaryLeague(player) {
   return player?.leagueTier || player?.league || player?.builderBaseLeague || null;
 }
 
-export default function PlayerPage() {
+function PlayerPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryTag = searchParams.get('tag') || '';
@@ -648,5 +648,13 @@ export default function PlayerPage() {
         }
       `}</style>
     </>
+  );
+}
+
+export default function PlayerPage() {
+  return (
+    <Suspense fallback={<Navbar />}>
+      <PlayerPageContent />
+    </Suspense>
   );
 }

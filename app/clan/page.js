@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Cookies from 'js-cookie';
 import Navbar from '@/components/Navbar';
@@ -98,7 +98,7 @@ function mergeMemberData(clanMembers = [], leaderboardMembers = []) {
   }));
 }
 
-export default function ClanPage() {
+function ClanPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryTag = searchParams.get('tag') || '';
@@ -722,5 +722,13 @@ export default function ClanPage() {
         }
       `}</style>
     </>
+  );
+}
+
+export default function ClanPage() {
+  return (
+    <Suspense fallback={<Navbar />}>
+      <ClanPageContent />
+    </Suspense>
   );
 }
