@@ -29,6 +29,7 @@ export default function Footer() {
               width={88}
               height={88}
               className={styles.footerImage}
+              style={{ height: 'auto' }}
             />
           </div>
         </div>
