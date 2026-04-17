@@ -1,0 +1,132 @@
+.siteFooter {
+  margin-top: auto;
+  padding: 16px 24px 18px;
+  background:
+    radial-gradient(circle at top left, rgba(229, 108, 39, 0.1), transparent 24%),
+    linear-gradient(180deg, #faf6f1 0%, #f4ede6 100%);
+  border-top: 1px solid #eadfd2;
+}
+
+.footerShell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 0 0;
+}
+
+.footerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footerBrand h2 {
+  margin: 4px 0 6px;
+  font-size: 20px;
+  line-height: 1.15;
+  color: #17120f;
+}
+
+.footerKicker {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #d76d2f;
+}
+
+.footerBrand p {
+  max-width: 520px;
+  color: #7b685a;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.footerArt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.7), rgba(255, 241, 232, 0.4));
+}
+
+.footerImage {
+  width: 88px;
+  height: auto;
+  object-fit: contain;
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 247, 240, 0.78);
+  border: 1px solid #f2dfd2;
+  color: #a65423;
+  font-size: 12px;
+  font-weight: 700;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.footerLink:hover {
+  transform: translateY(-1px);
+  background: #fff1e8;
+}
+
+.footerMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #efe4d8;
+  color: #8d7767;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .siteFooter {
+    padding: 14px 16px 18px;
+  }
+
+  .footerTop {
+    align-items: flex-start;
+  }
+
+  .footerBrand h2 {
+    font-size: 18px;
+  }
+
+  .footerLinks {
+    gap: 8px;
+  }
+
+  .footerMeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footerArt {
+    width: 68px;
+    height: 68px;
+  }
+
+  .footerImage {
+    width: 70px;
+    height: auto;
+  }
+}
