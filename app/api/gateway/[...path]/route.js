@@ -22,29 +22,25 @@ async function proxyRequest(request, { params }) {
     const resolvedParams = await params;
     const upstreamUrl = buildGatewayUrl(resolvedParams?.path || [], request.url);
 
-    // TEMP DEBUG
-    console.log('Proxying to:', upstreamUrl.toString());
-    console.log('Path segments:', resolvedParams?.path);
-
     const headers = new Headers(request.headers);
     headers.delete('host');
 
     // ─── WSO2 APIM mode (uncomment when testing with WSO2 locally) ───
-    // const apimToken = process.env.APIM_TOKEN || process.env.NEXT_PUBLIC_APIM_TOKEN;
-    // if (!apimToken) {
-    //   return NextResponse.json(
-    //     { message: 'Missing APIM_TOKEN environment variable.' },
-    //     { status: 500 }
-    //   );
-    // }
-    // headers.set('Authorization', `Bearer ${apimToken}`);
+    const apimToken = process.env.APIM_TOKEN || process.env.NEXT_PUBLIC_APIM_TOKEN;
+    if (!apimToken) {
+      return NextResponse.json(
+        { message: 'Missing APIM_TOKEN environment variable.' },
+        { status: 500 }
+      );
+    }
+    headers.set('Authorization', `Bearer ${apimToken}`);
     // ─────────────────────────────────────────────────────────────────
 
     // ─── Production mode (Railway — no WSO2, token optional) ─────────
-    const apimToken = process.env.APIM_TOKEN || process.env.NEXT_PUBLIC_APIM_TOKEN;
-    if (apimToken) {
-      headers.set('Authorization', `Bearer ${apimToken}`);
-    }
+    // const apimToken = process.env.APIM_TOKEN || process.env.NEXT_PUBLIC_APIM_TOKEN;
+    // if (apimToken) {
+    //   headers.set('Authorization', `Bearer ${apimToken}`);
+    // }
     // ─────────────────────────────────────────────────────────────────
 
     const init = {
