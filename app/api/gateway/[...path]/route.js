@@ -22,6 +22,10 @@ async function proxyRequest(request, { params }) {
     const resolvedParams = await params;
     const upstreamUrl = buildGatewayUrl(resolvedParams?.path || [], request.url);
 
+    // TEMP DEBUG
+    console.log('Proxying to:', upstreamUrl.toString());
+    console.log('Path segments:', resolvedParams?.path);
+
     const headers = new Headers(request.headers);
     headers.delete('host');
 
